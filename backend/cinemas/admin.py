@@ -10,9 +10,9 @@ class CinemaAdmin(admin.ModelAdmin):
 
 @admin.register(Hall)
 class HallAdmin(admin.ModelAdmin):
-    list_display = ("number", "hall_type", "cinema")
+    list_display = ("cinema", "number", "hall_type")
     list_filter = ("hall_type", "cinema")
-    ordering = ("cinema",)
+    ordering = ("cinema", "number")
 
     def get_readonly_fields(self, request, obj=None):
         if obj:
