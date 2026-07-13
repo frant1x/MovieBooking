@@ -35,7 +35,6 @@ class CustomUserAdmin(UserAdmin):
         ),
     )
 
-    # Налаштування форми СТВОРЕННЯ НОВОГО користувача (саме тут відбувається магія хешування)
     add_fieldsets = (
         (
             None,
@@ -47,5 +46,4 @@ class CustomUserAdmin(UserAdmin):
     )
 
 
-# Реєструємо нашу модель разом із кастомним класом адмінки
 admin.site.register(User, CustomUserAdmin)
