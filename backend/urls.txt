@@ -1,0 +1,6 @@
+Users:
+sign up - PUT: users/
+login - PUT: users/token
+logout - PUT: users/token/logout/
+user info - GET, PUT, PATCH, DELETE : users/me
+
