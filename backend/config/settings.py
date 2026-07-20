@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "users",
     "cinemas",
     "movies",
+    "orders",
 ]
 
 # Custom user model
