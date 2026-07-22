@@ -9,9 +9,15 @@ class CinemaSerializer(serializers.ModelSerializer):
 
 
 class SeatSerializer(serializers.ModelSerializer):
+    is_available = serializers.SerializerMethodField()
+
     class Meta:
         model = Seat
-        fields = "__all__"
+        fields = ["id", "row_number", "seat_number", "is_available"]
+
+    def get_is_available(self, obj):
+        occupied_seat_ids = self.context.get("occupied_seat_ids", set())
+        return obj.id not in occupied_seat_ids
 
 
 class HallSerializer(serializers.ModelSerializer):
