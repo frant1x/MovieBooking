@@ -16,6 +16,7 @@ class SeatSerializer(serializers.ModelSerializer):
 
 class HallSerializer(serializers.ModelSerializer):
     seats = SeatSerializer(many=True, read_only=True)
+    cinema = CinemaSerializer(read_only=True)
 
     class Meta:
         model = Hall
@@ -24,7 +25,13 @@ class HallSerializer(serializers.ModelSerializer):
             "cinema",
             "number",
             "hall_type",
-            "rows_count",
-            "seats_per_row",
             "seats",
         ]
+
+
+class CompactHallSerializer(serializers.ModelSerializer):
+    cinema_name = serializers.ReadOnlyField(source="cinema.name")
+
+    class Meta:
+        model = Hall
+        fields = ["id", "cinema_name", "number", "hall_type"]

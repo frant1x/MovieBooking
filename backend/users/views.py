@@ -2,6 +2,8 @@ from rest_framework import viewsets, permissions, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
+
+from .permissions import IsManagerOrAdminOrReadOnly, IsAdmin
 from .models import User
 from .serializers import UserSerializer
 
@@ -16,6 +18,8 @@ class UserViewSet(viewsets.ModelViewSet):
         """
         if self.action == "create":
             return [permissions.AllowAny()]
+        if self.action in ["list", "retrieve", "update", "partial_update", "destroy"]:
+            return [IsAdmin()]
         return [permissions.IsAuthenticated()]
 
     def create(self, request):
