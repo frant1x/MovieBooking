@@ -21,7 +21,6 @@ class SeatSerializer(serializers.ModelSerializer):
 
 
 class HallSerializer(serializers.ModelSerializer):
-    seats = SeatSerializer(many=True, read_only=True)
     cinema = CinemaSerializer(read_only=True)
 
     class Meta:
@@ -31,7 +30,6 @@ class HallSerializer(serializers.ModelSerializer):
             "cinema",
             "number",
             "hall_type",
-            "seats",
         ]
 
 

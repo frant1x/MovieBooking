@@ -68,6 +68,15 @@ class UserAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["email"], self.user.email)
 
+        expected_output = {
+            "id": self.user.id,
+            "email": "test@email.com",
+            "name": "test",
+            "role": "customer",
+            "created_at": self.user.created_at.isoformat().replace("+00:00", "Z"),
+        }
+        self.assertEqual(response.data, expected_output)
+
     def test_get_profile_unauthorized(self):
         response = self.client.get(self.my_page_url)
 

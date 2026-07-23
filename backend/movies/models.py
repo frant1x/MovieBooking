@@ -31,7 +31,7 @@ class MovieSession(models.Model):
 
     movie = models.ForeignKey(Movie, on_delete=models.PROTECT, related_name="sessions")
     hall = models.ForeignKey(Hall, on_delete=models.PROTECT, related_name="sessions")
-    date = models.DateField(default=None)
+    date = models.DateField()
     slot = models.CharField(
         max_length=5, choices=SessionSlot.choices, default=SessionSlot.MORNING
     )
