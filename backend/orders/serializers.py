@@ -4,6 +4,7 @@ from movies.models import MovieSession
 from cinemas.models import Seat
 from movies.serializers import CompactMovieSessionReadSerializer
 from django.db import transaction
+from datetime import date
 
 
 class TicketSerializer(serializers.ModelSerializer):
@@ -46,6 +47,11 @@ class OrderCreateSerializer(serializers.Serializer):
     def validate(self, attrs):
         moviesession = attrs["moviesession"]
         seats = attrs["seats"]
+
+        if moviesession.date < date.today():
+            raise serializers.ValidationError(
+                {"moviesession_id": "Cannot book tickets for past movie sessions."}
+            )
 
         if not seats:
             raise serializers.ValidationError(

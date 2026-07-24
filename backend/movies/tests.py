@@ -3,7 +3,7 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from cinemas.models import Cinema, Hall, Seat
+from cinemas.models import Cinema, Hall
 from movies.models import Movie, MovieSession
 from orders.models import Order, Ticket
 from users.models import User, UserRole
